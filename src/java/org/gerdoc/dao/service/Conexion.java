@@ -17,8 +17,8 @@ public abstract class Conexion<T> implements Serializable
 {
 
     public static String user = "root";
-    public static String password = "1234";
-    public static String db = "tarea";
+    public static String password = "n0m3l0";
+    public static String db = "Prueba";
 
     public boolean testDriver() 
     {
@@ -44,7 +44,7 @@ public abstract class Conexion<T> implements Serializable
         {
             return null;
         }
-        url = String.format("jdbc:mysql://%s/%s?user=%s&password=%s", server, db, user, password);
+        url = String.format("jdbc:mysql://%s:3308/%s?user=%s&password=%s", server, db, user, password);
         try 
         {
             if (!testDriver()) 

@@ -21,16 +21,20 @@
                 <td>Descripción</td>
             </tr>
             <%
-                
-                for(int i= 0; i< 1; i++)
+                RolService rolService = new RolService();
+                List<Rol>list = rolService.getRolList();
+                if( list != null && list.size() > 0)
+                {
+                for(Rol rol : list)
                 {
             
             %>
             <tr>
-                <td>rol <%=i%></td>
-                <td>descripción <%=i%></td>
+                <td><%=rol.getRol( )%></td>
+                <td><%=rol.getDescripcion( )%></td>
             </tr>
             <%}
+               }
              %>
         </table>
     </body>
