@@ -27,8 +27,8 @@
             }
             if( "enviar".equals( accion ) )
             {
-                Helpers helpers = new RolHelper( ).addHttpServletRequest(request);
-                if( helpers.add( ) )
+                Helpers helpers = new RolHelper( ).addRequest(request);
+                if( helpers.addT( ) )
                 {
                 %>
                     <jsp:forward page="roles.jsp" />
