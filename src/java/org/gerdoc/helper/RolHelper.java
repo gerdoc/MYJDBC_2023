@@ -20,15 +20,24 @@ public class RolHelper extends Helpers<Rol> implements Serializable
     public RolHelper() 
     {
     }
+    
+    public boolean isValidaCamposOk( )
+    {
+        return isNotNullAndNotEmpity( t.getRol() ) && isNotNullAndNotEmpity( t.getDescripcion() );
+    }
 
     @Override
     public boolean addT() 
     {
         rolService = new RolService();
-        t = new Rol() ;
+        t = new Rol();
         t.setRol(getParameter("rol"));
         t.setDescripcion(getParameter("descripcion"));
-        return rolService.addRol(t );
+        if( isValidaCamposOk( ) )
+        {
+            return rolService.addRol(t );
+        }
+        return false;
     }
 
     @Override

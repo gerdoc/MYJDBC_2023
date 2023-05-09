@@ -44,4 +44,14 @@ public abstract class Helpers<T> implements Serializable
     public abstract boolean addT( );
     public abstract List<T> getListT( );
     
+    public boolean isNullOrEmpity( String valor )
+    {
+        return valor == null || valor.length() <= 0;
+    }
+    
+    public boolean isNotNullAndNotEmpity( String valor )
+    {
+        return valor != null && valor.length() > 0;
+    }
+    
 }
