@@ -4,6 +4,7 @@
     Author     : alumno
 --%>
 
+<%@page import="org.gerdoc.helper.RolHelper"%>
 <%@page import="org.gerdoc.dao.Rol"%>
 <%@page import="java.util.List"%>
 <%@page import="org.gerdoc.dao.service.RolService"%>
@@ -13,8 +14,8 @@
         <td>Descripción</td>
     </tr>
     <%
-        RolService rolService = new RolService();
-        List<Rol>list = rolService.getRolList();
+        RolHelper rolHelper = new RolHelper();
+        List<Rol>list = rolHelper.getListT();
         if( list != null && list.size() > 0)
         {
         for(Rol rol : list)

@@ -1,9 +1,11 @@
 <%-- 
-    Document   : rolList
+    Document   : roles
     Created on : May 2, 2023, 6:09:56 PM
     Author     : gerdoc
 --%>
 
+<%@page import="org.gerdoc.helper.Helpers"%>
+<%@page import="org.gerdoc.helper.RolHelper"%>
 <%@page import="org.gerdoc.dao.Rol"%>
 <%@page import="java.util.List"%>
 <%@page import="org.gerdoc.dao.service.RolService"%>
@@ -25,11 +27,8 @@
             }
             if( "enviar".equals( accion ) )
             {
-                RolService rolService = new RolService();
-                Rol rol = new Rol( );
-                rol.setRol(request.getParameter("rol"));
-                rol.setDescripcion(request.getParameter("descripcion"));
-                if( rolService.addRol(rol) )
+                Helpers helpers = new RolHelper( ).addRequest(request);
+                if( helpers.addT( ) )
                 {
                 %>
                     <jsp:forward page="roles.jsp" />
