@@ -40,6 +40,10 @@ public class RolHelper extends Helpers<Rol> implements Serializable
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Rol> getListT() 
     {
@@ -47,8 +51,41 @@ public class RolHelper extends Helpers<Rol> implements Serializable
         return rolService.getRolList();
     }
 
+    /**
+     *
+     * @return
+     */
+    @Override
+    public boolean updateT()
+    {
+        rolService = new RolService();
+        t = new Rol();
+        t.setRol(getParameter("rol"));
+        t.setDescripcion(getParameter("descripcion"));
+        if( isValidaCamposOk( ) )
+        {
+            return rolService.updateRol(t );
+        }
+        return false;
+        
+    }
     
-    
-    
+    /**
+     *
+     * @return
+     */
+    @Override
+    public boolean deleteT()
+    {
+        rolService = new RolService();
+        t = new Rol();
+        t.setRol(getParameter("rol"));
+        if( t.getRol( ) != null && t.getRol().length( ) > 0 )
+        {
+            return rolService.deleteRol(t );
+        }
+        return false;
+        
+    }
     
 }

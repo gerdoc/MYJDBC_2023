@@ -12,6 +12,7 @@
     <tr>
         <td>Rol</td>
         <td>Descripción</td>
+        <td>Acción</td>
     </tr>
     <%
         RolHelper rolHelper = new RolHelper();
@@ -25,6 +26,12 @@
     <tr>
         <td><%=rol.getRol( )%></td>
         <td><%=rol.getDescripcion( )%></td>
+        <td>
+            <form method="post" action="roles.jsp">
+                <input type="hidden" name="rol" id="rol" value="<%=rol.getRol( )%>" />
+                <input type="submit" id="accion" name="accion" value="Borrar" />
+            </form>
+        </td>
     </tr>
     <%}
        }

@@ -19,6 +19,7 @@
     <body>
         <%
             String accion = request.getParameter("accion");
+            Helpers helpers = null;
             if( "nuevo".equals( accion ) )
             {
         %>
@@ -27,17 +28,25 @@
             }
             if( "enviar".equals( accion ) )
             {
-                Helpers helpers = new RolHelper( ).addRequest(request);
+                helpers = new RolHelper( ).addRequest(request);
                 if( helpers.addT( ) )
                 {
-                %>
-                    <jsp:forward page="roles.jsp" />
-                <%
-                }
-                
+        %>
+                    <jsp:forward page="roles.jsp?accion=list" />
+        <%
+                }                
             }
-
-            if( accion == null )
+            if( "Borrar".equals( accion ) )
+            {
+                helpers = new RolHelper( ).addRequest(request);
+                if( helpers.deleteT() )
+                {
+        %>
+                    <jsp:forward page="roles.jsp?accion=list" />
+        <%
+                }                
+            }
+            if( accion == null || "list".equals(accion ))
             {
         %>
                 <a href="roles.jsp?accion=nuevo">Nuevo rol </a>

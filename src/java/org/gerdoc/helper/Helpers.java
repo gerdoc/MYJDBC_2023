@@ -43,6 +43,8 @@ public abstract class Helpers<T> implements Serializable
     
     public abstract boolean addT( );
     public abstract List<T> getListT( );
+    public abstract boolean updateT( );
+    public abstract boolean deleteT( );
     
     public boolean isNullOrEmpity( String valor )
     {

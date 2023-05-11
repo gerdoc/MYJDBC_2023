@@ -12,6 +12,7 @@ import java.sql.SQLException;
 /**
  *
  * @author gerdoc
+ * @param <T>
  */
 public abstract class Conexion<T> implements Serializable 
 {
@@ -19,6 +20,7 @@ public abstract class Conexion<T> implements Serializable
     public static String user = "root";
     public static String password = "n0m3l0";
     public static String db = "Prueba";
+    public static String port = "3308";
 
     public boolean testDriver() 
     {
@@ -44,7 +46,7 @@ public abstract class Conexion<T> implements Serializable
         {
             return null;
         }
-        url = String.format("jdbc:mysql://%s:3308/%s?user=%s&password=%s", server, db, user, password);
+        url = String.format("jdbc:mysql://%s:%s/%s?user=%s&password=%s", server, port, db, user, password);
         try 
         {
             if (!testDriver()) 
