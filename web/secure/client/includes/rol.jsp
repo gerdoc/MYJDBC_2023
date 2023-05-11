@@ -10,7 +10,7 @@
             <td>ROL</td>
             <td>
                 <input type="text" name="rol" id="rol" /> 
-                <span id="rolError"></span>
+                <span id="rolError" style="color:red"></span>
             </td>
         </tr>
         <tr>
@@ -32,10 +32,10 @@
         {
             if( obj.value === undefined || obj.value.length <= 0 )
             {
-                campoError.innerHTML = "<b>Campo necesario</b>";
+                campoError.innerHTML = "<b>" + textoError + "</b>";
                 return false;
             }
-            campoError.innerHTML = "";
+            campoError.innerHTML = " ";
             return true;
         
         }
@@ -45,14 +45,13 @@
             const descripcion = document.getElementById("descripcion");
             var flag = true;
             
-            if( validateTexto( rol , "El rol es un campo requerido" , document.getElementById("rolError") ) )
+            if( !validateTexto( rol , "El rol es un campo requerido" , document.getElementById("rolError") ) )
             {
                 flag = false;
             }
-            if( validateTexto( rol , "Descripción es un campo requerido" , document.getElementById("descripcionError") ) )
+            if( !validateTexto( descripcion , "Descripción es un campo requerido" , document.getElementById("descripcionError") ) )
             {
                 flag = false;
-                document.getElementById("").innerHTML = "Campo necesario";
             }
             return flag;
         }
