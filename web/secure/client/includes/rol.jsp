@@ -17,7 +17,7 @@
             <td>DESCRIPCION</td>
             <td>
                 <input type="text" name="descripcion" id="descripcion" /> 
-                <span id="descripcionError"></span>
+                <span id="descripcionError" style="color:red"></span>
             </td>
         </tr>        
         <tr>
@@ -28,21 +28,31 @@
     </table>
     <script>
         <!--
+        function validateTexto( obj , textoError, campoError )
+        {
+            if( obj.value === undefined || obj.value.length <= 0 )
+            {
+                campoError.innerHTML = "<b>Campo necesario</b>";
+                return false;
+            }
+            campoError.innerHTML = "";
+            return true;
+        
+        }
         function validateForm( )
         {
             const rol = document.getElementById("rol");
             const descripcion = document.getElementById("descripcion");
             var flag = true;
             
-            if( rol.value === undefined || rol.value.length <= 0 )
+            if( validateTexto( rol , "El rol es un campo requerido" , document.getElementById("rolError") ) )
             {
                 flag = false;
-                document.getElementById("rolError").innerHTML = "Campo necesario";
             }
-            if( descripcion.value === undefined || descripcion.value.length <= 0)
+            if( validateTexto( rol , "Descripción es un campo requerido" , document.getElementById("descripcionError") ) )
             {
                 flag = false;
-                document.getElementById("descripcionError").innerHTML = "Campo necesario";
+                document.getElementById("").innerHTML = "Campo necesario";
             }
             return flag;
         }
