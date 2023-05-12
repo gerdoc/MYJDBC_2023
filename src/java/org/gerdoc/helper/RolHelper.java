@@ -87,5 +87,19 @@ public class RolHelper extends Helpers<Rol> implements Serializable
         return false;
         
     }
+
+    @Override
+    public Rol getTByKey() 
+    {
+        String rol = null;
+        
+        rol = getParameter("rol" );
+        if( rol == null || rol.length( ) <= 0 )
+        {
+            return null;
+        }
+        rolService = new RolService( );
+        return rolService.getRolByRol( rol );
+    }
     
 }

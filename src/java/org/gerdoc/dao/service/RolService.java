@@ -154,5 +154,47 @@ public class RolService extends Conexion<Rol>
         return false;
     }
     
+    public Rol getRolByRol( String rol) 
+    {
+        Rol aux = null;
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try 
+        {
+            connection = getConnection();
+            if (connection == null) 
+            {
+                return null;
+            }
+            preparedStatement = connection.prepareStatement("SELECT * FROM ROL WHERE ROL = ?" );
+            if (preparedStatement == null) 
+            {
+                return null;
+            }
+            preparedStatement.setString(1, rol );
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet == null) 
+            {
+                return null;
+            }
+            aux = new Rol ( );
+            while (resultSet.next()) 
+            {
+                
+                aux.setRol(resultSet.getString(1));
+                aux.setDescripcion(resultSet.getString(2));
+            }
+            resultSet.close();
+            closeConnection(connection);
+            return aux;
+        } 
+        catch (SQLException ex) 
+        {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+    
     
 }

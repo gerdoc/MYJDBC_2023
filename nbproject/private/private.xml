@@ -3,10 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/gerdoc/NetBeansProjects/MYJDBC_2023/src/java/org/gerdoc/helper/Helpers.java</file>
-            <file>file:/Users/gerdoc/NetBeansProjects/MYJDBC_2023/src/java/org/gerdoc/dao/service/Conexion.java</file>
+            <file>file:/Users/gerdoc/NetBeansProjects/MYJDBC_2023/web/secure/client/includes/rolList.jsp</file>
             <file>file:/Users/gerdoc/NetBeansProjects/MYJDBC_2023/src/java/org/gerdoc/dao/service/RolService.java</file>
+            <file>file:/Users/gerdoc/NetBeansProjects/MYJDBC_2023/src/java/org/gerdoc/dao/service/Conexion.java</file>
+            <file>file:/Users/gerdoc/NetBeansProjects/MYJDBC_2023/src/java/org/gerdoc/helper/Helpers.java</file>
+            <file>file:/Users/gerdoc/NetBeansProjects/MYJDBC_2023/web/roles.jsp</file>
             <file>file:/Users/gerdoc/NetBeansProjects/MYJDBC_2023/src/java/org/gerdoc/dao/Rol.java</file>
+            <file>file:/Users/gerdoc/NetBeansProjects/MYJDBC_2023/src/java/org/gerdoc/helper/RolHelper.java</file>
+            <file>file:/Users/gerdoc/NetBeansProjects/MYJDBC_2023/web/secure/client/includes/rol.jsp</file>
         </group>
     </open-files>
 </project-private>

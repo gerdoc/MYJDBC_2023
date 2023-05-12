@@ -45,6 +45,7 @@ public abstract class Helpers<T> implements Serializable
     public abstract List<T> getListT( );
     public abstract boolean updateT( );
     public abstract boolean deleteT( );
+    public abstract T getTByKey( );
     
     public boolean isNullOrEmpity( String valor )
     {
