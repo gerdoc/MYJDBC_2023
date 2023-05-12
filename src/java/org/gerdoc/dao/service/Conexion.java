@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  *
@@ -18,9 +19,9 @@ public abstract class Conexion<T> implements Serializable
 {
 
     public static String user = "root";
-    public static String password = "1234";
+    public static String password = "n0m3l0";
     public static String db = "Prueba";
-    public static String port = "3306";
+    public static String port = "3308";
 
     public boolean testDriver() 
     {
@@ -84,6 +85,16 @@ public abstract class Conexion<T> implements Serializable
         {
             ex.printStackTrace();
         }
+    }
+    
+    public Date dateSql2DateUtil( java.sql.Date date )
+    {
+        return new Date( date.getTime( ) );
+    }
+    
+    public java.sql.Date dateUtil2DateSql( Date date )
+    {
+        return new java.sql.Date( date.getTime( ) );
     }
 
 }

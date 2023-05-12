@@ -5,7 +5,16 @@
 package org.gerdoc.helper;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -55,6 +64,25 @@ public abstract class Helpers<T> implements Serializable
     public boolean isNotNullAndNotEmpity( String valor )
     {
         return valor != null && valor.length() > 0;
+    }
+    
+    public boolean isNotNull( Object valor )
+    {
+        return valor != null;
+    }
+    
+    public Date string2Date( String fecha ) 
+    {
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy" );
+        try 
+        {
+            return format.parse(fecha );
+        } 
+        catch (ParseException ex) 
+        {
+            Logger.getLogger(Helpers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
 }
