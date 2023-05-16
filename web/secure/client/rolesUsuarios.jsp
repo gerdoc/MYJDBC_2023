@@ -4,9 +4,9 @@
     Author     : gerdoc
 --%>
 
-<%@page import="org.gerdoc.helper.UsuarioHelper"%>
-<%@page import="java.util.Calendar"%>
+<%@page import="org.gerdoc.helper.RolUsuarioHelper"%>
 <%@page import="org.gerdoc.dao.Usuario"%>
+<%@page import="org.gerdoc.dao.RolUsuario"%>
 <%@page import="org.gerdoc.helper.Helpers"%>
 <%@page import="org.gerdoc.helper.RolHelper"%>
 <%@page import="org.gerdoc.dao.Rol"%>
@@ -23,40 +23,32 @@
         <%
             String accion = request.getParameter("accion");
             Helpers helpers = null;
-            Usuario usuario = null;
+            RolUsuario rolUsuario = null;
             String aux = null;
             boolean flag = false;
             String readonly = null;
             
             if( "Nuevo".equals( accion ) || "Editar".equals( accion ) )
             {
-                helpers = new UsuarioHelper( ).addRequest( request );
                 if( "Nuevo".equals( accion ) )
                 {
-                    usuario = new Usuario( );
-                    usuario.setUsuario( "" );
-                    usuario.setPassword( "" );
-                    usuario.setNombre( "" );
-                    usuario.setCorreo( "" );
-                    usuario.setUltimoLogin( Calendar.getInstance( ).getTime( ) );
+                    rolUsuario = new RolUsuario( );
+                    rolUsuario.setRol( new Rol( "" ) );
+                    rolUsuario.setUsuario( new Usuario( "" ) );
                     aux = "Guardar";
                     readonly = "";
                 }
                 if( "Editar".equals( accion ) )
                 {
-                    usuario = (Usuario)helpers.getTByKey( );
+                    helpers = new RolUsuarioHelper( ).addRequest( request );
+                    rolUsuario = (RolUsuario)helpers.getTByKey( );
                     aux = "Actualizar";
                     readonly = "readonly='true'";
                 }
-                
-            
         %>
-                <jsp:include page="includes/usuario.jsp" >
-                    <jsp:param name="usuario" value="<%=usuario.getUsuario()%>" />
-                    <jsp:param name="nombre" value="<%=usuario.getNombre()%>" />
-                    <jsp:param name="password" value="<%=usuario.getPassword()%>" />
-                    <jsp:param name="correo" value="<%=usuario.getCorreo()%>" />
-                    <jsp:param name="ultimoLogin" value="<%=helpers.date2String( usuario.getUltimoLogin( ) )%>" />
+                <jsp:include page="includes/rolUsuario.jsp" >
+                    <jsp:param name="rol" value="<%=rolUsuario.getRol().getRol()%>" />
+                    <jsp:param name="usuario" value="<%=rolUsuario.getUsuario().getUsuario()%>" />
                     <jsp:param name="accion" value="<%=aux%>" />
                     <jsp:param name="readonly" value="<%=readonly%>" />
                 </jsp:include>
@@ -64,7 +56,7 @@
             }
             if( "Guardar".equals( accion ) || "Borrar".equals( accion ) || "Actualizar".equals( accion ) )
             {
-                helpers = new UsuarioHelper( ).addRequest( request );
+                helpers = new RolUsuarioHelper( ).addRequest( request );
                 if( "Guardar".equals( accion ) )
                 {
                     flag = helpers.addT( );
@@ -80,15 +72,15 @@
                 if( flag )
                 {
         %>
-                    <jsp:forward page="usuarios.jsp?accion=list" />
+                    <jsp:forward page="rolesUsuarios.jsp?accion=list" />
         <%
                 }                
             }
             if( accion == null || "list".equals(accion ))
             {
         %>
-                <a href="usuarios.jsp?accion=Nuevo">Nuevo usuario</a>
-                <jsp:include page="includes/usuarioList.jsp" />
+                <a href="rolesUsuarios.jsp?accion=Nuevo">Nuevo rol usuario</a>
+                <jsp:include page="includes/rolUsuarioList.jsp" />
         <%
             }
         %>

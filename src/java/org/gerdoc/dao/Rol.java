@@ -19,6 +19,11 @@ public class Rol implements Serializable
     {
     }
 
+    public Rol(String rol) 
+    {
+        this.rol = rol;
+    }
+
     public String getRol() 
     {
         return rol;

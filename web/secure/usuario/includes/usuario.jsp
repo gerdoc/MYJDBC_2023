@@ -4,23 +4,44 @@
     Author     : alumno
 --%>
 
-<form id="form1" method="post" action="roles.jsp" onsubmit="return validateForm( )">
+<form id="form1" method="post" action="usuarios.jsp" onsubmit="return validateForm( )">
     <table border="1">
         <tr>
-            <td>ROL</td>
+            <td>Usuario</td>
             <td>
                 
-                <input type="text" name="rol" id="rol" value="${param.rol}" ${param.readonly} /> 
-                <span id="rolError" style="color:red"></span>
+                <input type="text" name="usuario" id="usuario" value="${param.usuario}" ${param.readonly} /> 
+                <span id="usuarioError" style="color:red"></span>
             </td>
         </tr>
         <tr>
-            <td>DESCRIPCION</td>
+            <td>Password</td>
             <td>
-                <input type="text" name="descripcion" id="descripcion" value="${param.descripcion}" /> 
-                <span id="descripcionError" style="color:red"></span>
+                <input type="text" name="password" id="password" value="${param.password}" /> 
+                <span id="passwordError" style="color:red"></span>
             </td>
-        </tr>        
+        </tr>
+        <tr>
+            <td>Nombre</td>
+            <td>
+                <input type="text" name="nombre" id="nombre" value="${param.nombre}" /> 
+                <span id="nombreError" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Correo</td>
+            <td>
+                <input type="text" name="correo" id="correo" value="${param.correo}" /> 
+                <span id="correoError" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Último Login</td>
+            <td>
+                <input type="text" name="ultimoLogin" id="ultimoLogin" value="${param.ultimoLogin}" /> 
+                <span id="ultimoLoginError" style="color:red"></span>
+            </td>
+        </tr>
         <tr>
             <td colspan="2">
                 <input type="submit"  name="accion" id="accion" value="${param.accion}" />
@@ -40,23 +61,25 @@
             return true;
         
         }
+        
         function validateForm( )
         {
-            const rol = document.getElementById("rol");
-            const descripcion = document.getElementById("descripcion");
-            var flag = true;
+            const arr = ['usuario' , 'password', 'nombre' , 'correo' , 'ultimoLogin'];
+            let obj1, obj2;
             
-            if( !validateTexto( rol , "El rol es un campo requerido" , document.getElementById("rolError") ) )
+            var flag = true;
+            for( const aux of arr )
             {
-                flag = false;
-            }
-            if( !validateTexto( descripcion , "Descripción es un campo requerido" , document.getElementById("descripcionError") ) )
-            {
-                flag = false;
+                obj1 = document.getElementById( aux );
+                obj2 = document.getElementById( aux + 'Error' );
+                if( !validateTexto( obj1 , "El campo " + aux + " es requerido" , obj2 ) )
+                {
+                    flag = false;
+                }
             }
             return flag;
         }
         -->
     </script>
-    <a href="roles.jsp"> Lista de roles </a>
+    <a href="usuarios.jsp"> Lista de usuarios</a>
 </form>
