@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/MYJDBC_2023"/>
+<Context path="/MYJDBC_2023">
+    <Realm 
+        className="org.apache.catalina.realm.JDBCRealm" 
+        driverName="com.mysql.cj.jdbc.Driver"
+        connectionURL="jdbc:mysql://localhost/Prueba?user=root&amp;password=1234"
+        roleNameCol="ROL"
+        userCredCol="PASSWORD"
+        userNameCol="USUARIO"
+        userRoleTable="ROL_Usuario" 
+        userTable="Usuario"
+        debug="99" 
+        />
+        
+</Context>

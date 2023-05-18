@@ -9,23 +9,22 @@ USE `Prueba` ;
 -- Table `Prueba`.`ROL_Usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Prueba`.`ROL_Usuario` (
-  `ROL_ROL` VARCHAR(30) NOT NULL,
-  `Usuario_USUARIO` VARCHAR(100) NOT NULL,
-  PRIMARY KEY (`ROL_ROL`, `Usuario_USUARIO`),
-  INDEX `fk_ROL_has_Usuario_Usuario1_idx` (`Usuario_USUARIO` ASC),
-  INDEX `fk_ROL_has_Usuario_ROL_idx` (`ROL_ROL` ASC),
+  `ROL` VARCHAR(30) NOT NULL,
+  `USUARIO` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`ROL`, `USUARIO`),
+  INDEX `fk_ROL_has_Usuario_Usuario1_idx` (`USUARIO` ASC),
+  INDEX `fk_ROL_has_Usuario_ROL_idx` (`ROL` ASC),
   CONSTRAINT `fk_ROL_has_Usuario_ROL`
-    FOREIGN KEY (`ROL_ROL`)
+    FOREIGN KEY (`ROL`)
     REFERENCES `Prueba`.`ROL` (`ROL`)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT,
   CONSTRAINT `fk_ROL_has_Usuario_Usuario1`
-    FOREIGN KEY (`Usuario_USUARIO`)
+    FOREIGN KEY (`USUARIO`)
     REFERENCES `Prueba`.`Usuario` (`USUARIO`)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT)
 ENGINE = InnoDB;
-
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

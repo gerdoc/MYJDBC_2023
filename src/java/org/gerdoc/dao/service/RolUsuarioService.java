@@ -68,7 +68,7 @@ public class RolUsuarioService extends Conexion<RolUsuario>
     {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        String sql = "INSERT INTO ROL_Usuario(ROL_ROL,Usuario_USUARIO) VALUES(?,?)";
+        String sql = "INSERT INTO ROL_Usuario(ROL,USUARIO) VALUES(?,?)";
         int row = 0;
         try 
         {
@@ -104,7 +104,7 @@ public class RolUsuarioService extends Conexion<RolUsuario>
     {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        String sql = "DELETE FROM ROL_Usuario WHERE ROL_ROL = ? AND Usuario_USUARIO = ?";
+        String sql = "DELETE FROM ROL_Usuario WHERE ROL = ? AND USUARIO = ?";
         int row = 0;
         try 
         {
@@ -144,7 +144,7 @@ public class RolUsuarioService extends Conexion<RolUsuario>
             {
                 return null;
             }
-            preparedStatement = connection.prepareStatement("SELECT * FROM ROL_Usuario WHERE ROL_ROL = ? AND Usuario_USUARIO = ?" );
+            preparedStatement = connection.prepareStatement("SELECT * FROM ROL_Usuario WHERE ROL = ? AND USUARIO = ?" );
             if (preparedStatement == null) 
             {
                 return null;
@@ -174,5 +174,49 @@ public class RolUsuarioService extends Conexion<RolUsuario>
         return null;
     }
     
-    
+    public RolUsuario getRolUsuarioByUsuarioPassword( String usuario , String password ) 
+    {
+        RolUsuario aux = null;
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        StringBuilder stringBuilder = null;
+        try 
+        {
+            connection = getConnection();
+            if (connection == null) 
+            {
+                return null;
+            }
+            stringBuilder = new StringBuilder();
+            stringBuilder.append("SELECT RU.ROL , RU.USUARIO FROM ROL_Usuario RU INNER JOIN Usuario US ON RU.USUARIO = US.USUARIO" );
+            stringBuilder.append( " WHERE US.USUARIO = ? AND US.PASSWORD = ?" );
+            preparedStatement = connection.prepareStatement( stringBuilder.toString( ) );
+            if (preparedStatement == null) 
+            {
+                return null;
+            }
+            preparedStatement.setString(1, usuario );
+            preparedStatement.setString(2, password );
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet == null) 
+            {
+                return null;
+            }
+            aux = new RolUsuario ( );
+            while (resultSet.next()) 
+            {
+                aux.setRol( new Rol( resultSet.getString(1)) );
+                aux.setUsuario( new Usuario( resultSet.getString(2)) );
+            }
+            resultSet.close();
+            closeConnection(connection);
+            return aux;
+        } 
+        catch (SQLException ex) 
+        {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 }
